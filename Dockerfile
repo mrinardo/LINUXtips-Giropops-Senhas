@@ -1,8 +1,6 @@
-FROM ubuntu
+FROM python:3
 
 ENV REDIS_HOST=localhost
-
-RUN apt update && apt install python3 pip redis -y
 
 WORKDIR /app
 
@@ -10,7 +8,10 @@ COPY . ./
 
 RUN pip install -r ./requirements.txt
 
-ENTRYPOINT [ "/app/start.sh" ]
+ENTRYPOINT ["flask"]
+CMD ["run", "--host=0.0.0.0"]
+
+
 
 
 
